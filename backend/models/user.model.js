@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -22,3 +22,5 @@ const userSchema = new mongoose.Schema({
       "https://ik.imagekit.io/rxut0ulzx/avatar-default-user-profile-icon-simple-flat-grey-vector-57234191.webp",
   },
 });
+
+module.exports = mongoose.model("User", userSchema);
