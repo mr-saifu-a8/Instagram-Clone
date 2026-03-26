@@ -8,9 +8,6 @@ const imagekit = new ImageKit({
 });
 
 const postCreating = async (req, res) => {
-
-
-
   const file = await imagekit.files.upload({
     file: await toFile(Buffer.from(req.file.buffer), "file"),
     fileName: "test",
@@ -32,9 +29,7 @@ const postCreating = async (req, res) => {
 };
 
 const getPostController = async (req, res) => {
-
-
-  const userId = req.user.id
+  const userId = req.user.id;
 
   const posts = await postModel.find({
     user: userId,
@@ -43,10 +38,8 @@ const getPostController = async (req, res) => {
   res.status(200).json({ message: "Posts fetched successfully", posts });
 };
 
-
 const getPostDetails = async (req, res) => {
-  
-  const userId = req.user.id
+  const userId = req.user.id;
   const postId = req.params.postId;
 
   const post = await postModel.findById(postId);
