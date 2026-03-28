@@ -3,16 +3,28 @@ import "../style/form.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
+  const { handleLogin, loading } = useAuth()
+  
+  if (loading) {
+  return  <h1>Loading...</h1>
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    handleLogin(username, password).then(res => {
+      console.log(res);
+      navigate("/")
+    })
+
   };
   return (
     <main className="auth-page">
