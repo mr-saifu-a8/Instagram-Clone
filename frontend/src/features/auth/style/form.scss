@@ -1,0 +1,117 @@
+$primary: #6366f1;
+$bg: #f4f6fb;
+$text: #1f2937;
+$border: #e5e7eb;
+
+.auth-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem 2rem;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+
+  h1 {
+    margin-bottom: 0.3rem;
+    color: $text;
+    font-weight: 600;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1.8rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}
+
+// Floating Input
+.input-group {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 0.9rem;
+    border: 1px solid $border;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    background: transparent;
+
+    &:focus {
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    &:focus + label,
+    &:valid + label {
+      top: -8px;
+      left: 10px;
+      font-size: 0.75rem;
+      background: white;
+      padding: 0 5px;
+      color: $primary;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #9ca3af;
+    pointer-events: none;
+    transition: 0.2s ease;
+  }
+}
+
+// Button
+button {
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 10px;
+  background: $primary;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// Bottom Text
+.bottom-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.toggleAuthForm {
+  color: $primary;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
