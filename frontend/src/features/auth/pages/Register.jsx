@@ -1,19 +1,56 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
-   const handleSubmit = (e) => {
-     e.preventDefault();
-   };
+  const navigate = useNavigate();
+
+  const { loading, handleRegister } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await handleRegister(username, email, password);
+    console.log("Registered");
+    navigate("/");
+  };
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <main>
       <div className="form-container">
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter username" />
-          <input type="email" placeholder="Enter email" />
-          <input type="password" placeholder="Enter password" />
+          <input
+            onInput={(e) => {
+              setUsername(e.target.value);
+            }}
+            name="username"
+            type="text"
+            placeholder="Enter username"
+          />
+          <input
+            onInput={(e) => {
+              setEmail(e.target.value);
+            }}
+            name="email"
+            type="email"
+            placeholder="Enter email"
+          />
+          <input
+            onInput={(e) => {
+              setPassword(e.target.value);
+            }}
+            name="password"
+            type="password"
+            placeholder="Enter password"
+          />
           <button className="button primary-button" type="submit">
             Register
           </button>
@@ -24,6 +61,6 @@ const Register = () => {
       </div>
     </main>
   );
-}
+};
 
-export default Register
+export default Register;

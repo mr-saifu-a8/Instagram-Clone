@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate()
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,8 +22,7 @@ const Login = () => {
 
   if (loading) {
     return (
-      // <h1>Loading...</h1>
-      navigate("/loading")
+      <h1>Loading...</h1>
     )
   }
   return (
