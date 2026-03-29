@@ -1,58 +1,59 @@
-
-import "../style/form.scss";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
+import "../style/style.scss";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-
-
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
+  const { user, loading, handleLogin } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate()
-
-  const { handleLogin, loading } = useAuth()
-  
-  if (loading) {
-  return  <h1>Loading...</h1>
-  }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin(username, password).then(res => {
-      console.log(res);
-      navigate("/")
-    })
 
+    await handleLogin(username, password)
+    console.log("user loggedin");
+    
+    navigate("/")
   };
+
+  if (loading) {
+    return (
+      // <h1>Loading...</h1>
+      navigate("/loading")
+    )
+  }
   return (
-    <main className="auth-page">
+    <main>
       <div className="form-container">
-        <h1>Welcome Back</h1>
-        <p className="subtitle">Login to continue 🔐</p>
-
+        <h1>Login</h1>
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <input onInput={(e)=> {setUsername(e.target.value)}} type="text" name="username" required />
-            <label>Username</label>
-          </div>
-
-          <div className="input-group">
-            <input onInput={(e) => {
-              setPassword(e.target.value)
-            }} type="password" name="password" required />
-            <label>Password</label>
-          </div>
-
-          <button type="submit">Login</button>
+          <input
+            onInput={(e) => {
+              setUsername(e.target.value);
+            }}
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Enter username"
+          />
+          <input
+            onInput={(e) => {
+              setPassword(e.target.value);
+            }}
+            name="password"
+            id="password"
+            type="password"
+            placeholder="Enter password"
+          />
+          <button className="button primary-button" type="submit">
+            Login
+          </button>
         </form>
-
-        <p className="bottom-text">
-          Don’t have an account?{" "}
-          <Link className="toggleAuthForm" to="/register">
-            Register
-          </Link>
+        <p className="auth-switch">
+          Don't have an account? <Link to="/register">Register</Link>
         </p>
       </div>
     </main>

@@ -1,73 +1,29 @@
-import React, { useState } from "react";
-import "../style/form.scss";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-   
-  };
+   const handleSubmit = (e) => {
+     e.preventDefault();
+   };
   return (
-    <main className="auth-page">
+    <main>
       <div className="form-container">
-        <h1>Create Account</h1>
-        <p className="subtitle">Join us and get started 🚀</p>
-
+        <h1>Register</h1>
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <input
-              onInput={(e) => {
-                setUsername(e.target.value);
-              }}
-              type="text"
-              name="username"
-              required
-            />
-            <label>Username</label>
-          </div>
-
-          <div className="input-group">
-            <input
-              onInput={(e) => {
-                setEmail(e.target.value);
-              }}
-              type="email"
-              name="email"
-              required
-            />
-            <label>Email</label>
-          </div>
-
-          <div className="input-group">
-            <input
-              onInput={(e) => {
-                setPassword(e.target.value);
-              }}
-              type="password"
-              name="password"
-              required
-            />
-            <label>Password</label>
-          </div>
-
-          <button type="submit">Create Account</button>
+          <input type="text" placeholder="Enter username" />
+          <input type="email" placeholder="Enter email" />
+          <input type="password" placeholder="Enter password" />
+          <button className="button primary-button" type="submit">
+            Register
+          </button>
         </form>
-
-        <p className="bottom-text">
-          Already have an account?{" "}
-          <Link className="toggleAuthForm" to="/login">
-            Login
-          </Link>
+        <p className="auth-switch">
+          Don't have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </main>
   );
-};
+}
 
-export default Register;
+export default Register
