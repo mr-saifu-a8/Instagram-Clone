@@ -58,7 +58,7 @@ async function loginController(req, res) {
 
   const user = await userModle.findOne({
     $or: [{ email }, { username }],
-  });
+  }).select("+password")
 
   if (!user) {
     return res.status(404).json({ message: "User not found" });
