@@ -41,7 +41,7 @@ const Post = ({user, post}) => {
         <div className="actions">
           <div className="actions__left">
             <button className="action-btn">
-              <Heart size={24} color="#262626" />
+              <Heart size={24} color={post.isLiked ? "red" : "#262626"} />
             </button>
             <button className="action-btn">
               <MessageCircle size={24} color="#262626" />
