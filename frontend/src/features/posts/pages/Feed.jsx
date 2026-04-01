@@ -4,6 +4,7 @@ import "../style/feed.scss";
 import Post from "../components/Post";
 import { usePost } from "../hook/usePost";
 import { useAuth } from "../../auth/hooks/useAuth";
+import Navbar from "../components/Navbar";
 
 const Feed = () => {
   const { feed, handleGetFeed, loading } = usePost();
@@ -31,6 +32,7 @@ const Feed = () => {
   return (
     <main>
       <div className="feed">
+        <Navbar/>
         {feed.map((post) => (
           <Post key={post._id} user={post.user} post={post} />
         ))}
